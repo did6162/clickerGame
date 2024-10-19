@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clicker Game</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Chocolate Milk Clicker</h1>
+
+    <div id="score">Chocolate Milk: 0</div>
+    <div id="score-per-sec">Chocolate Milk per Second: 0</div>
+
+    <button id="click-btn"><img src="/img/choccy_milk.png" alt="chocolate milk" width="250"></button>
+
+    <div id="generators">
+        <h2>Generators</h2>
+        <p>Buy generators to generate Chocolate Milk automatically:</p>
+    
+        <table>
+            <thead>
+                <tr>
+                    <th>Owned</th>
+                    <th>Generator</th>
+                    <th>Cost</th>
+                    <th>CM/s</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><span id="owned-auto1">0</span></td>
+                    <td>Brown Cow</td>
+                    <td><span id="cost-auto1">50</span></td>
+                    <td><span id="pps-auto1">+0</span></td>
+                    <td><button id="auto1">Buy</button></td>
+                </tr>
+                <tr class="hidden" id="auto2-row">
+                    <td><span id="owned-auto2">0</span></td>
+                    <td>Farm</td>
+                    <td><span id="cost-auto2">200</span></td>
+                    <td><span id="pps-auto2">+0</span></td>
+                    <td><button id="auto2">Buy</button></td>
+                </tr>
+                <tr class="hidden" id="auto3-row">
+                    <td><span id="owned-auto3">0</span></td>
+                    <td>Factory</td>
+                    <td><span id="cost-auto3">500</span></td>
+                    <td><span id="pps-auto3">+0</span></td>
+                    <td><button id="auto3">Buy</button></td>
+                </tr>
+                <tr class="hidden" id="auto4-row">
+                    <td><span id="owned-auto4">0</span></td>
+                    <td>Mine</td>
+                    <td><span id="cost-auto4">1000</span></td>
+                    <td><span id="pps-auto4">+0</span></td>
+                    <td><button id="auto4">Buy</button></td>
+                </tr>
+                <tr class="hidden" id="auto5-row">
+                    <td><span id="owned-auto5">0</span></td>
+                    <td>Grandma Cow</td>
+                    <td><span id="cost-auto5">5000</span></td>
+                    <td><span id="pps-auto5">+0</span></td>
+                    <td><button id="auto5">Buy</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+    
+    <script src="script.js"></script>
+</body>
+</html>
