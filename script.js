@@ -12,35 +12,71 @@ const game = (() => {
     let totalPointsPerSecond = 0;
 
     const scoreDisplay = document.getElementById('score');
-    const scorePerSecDisplay = document.getElementById('score-per-sec')
+    const scorePerSecDisplay = document.getElementById('score-per-sec');
     const clickButton = document.getElementById('click-btn');
+    const usernameButton = document.getElementById('username-button');
+    const changeColor = document.getElementById('colors');
 
-    function updateScore() {
-        scoreDisplay.textContent = `Chocolate Milk: ${score}`;
-        scorePerSecDisplay.textContent = `Chocolate Milk per Second: ${totalPointsPerSecond}`;
-    }
+    changeColor.addEventListener('change', (event) => {
+        const selectedColor = event.target.value;
+        const colorableElements = document.getElementsByClassName('colorable');
+
+        Array.from(colorableElements).forEach(element => {
+            element.style.color = selectedColor;
+        });
+    });
 
     clickButton.addEventListener('click', () => {
         score += scorePerClick;
         updateScore();
         checkAutomatonVisibility();
     });
-
+    
+    usernameButton.addEventListener('click', () => {
+        const userInput = prompt("Choose a Username!");
+        document.getElementById(`shop-name`).textContent = `${userInput}'s Shop`;
+    });
+    
+    function updateScore() {
+        scoreDisplay.textContent = `Chocolate Milk: ${score}`;
+        scorePerSecDisplay.textContent = `Chocolate Milk per Second: ${totalPointsPerSecond}`;
+    }
+    
     function buyAutomaton(automaton) {
         if (score >= automaton.cost) {
             score -= automaton.cost;
             automaton.owned++;
             totalPointsPerSecond += automaton.pps;
             automaton.ppsd += automaton.pps;
-            updateAutomaton(automaton);
+            updateBuyAutomaton(automaton);
             updateScore();
         } else {
             alert('Not enough Chocolate Milk!')
         }
     }
 
-    function updateAutomaton(automaton) {
+    function sellAutomaton(automaton) {
+        if (automaton.owned > 0) {
+            automaton.owned--;
+            totalPointsPerSecond -= automaton.pps;
+            automaton.ppsd -= automaton.pps;
+            updateSellAutomaton(automaton);
+            score += Math.floor(automaton.cost * 0.85);
+            updateScore();
+        } else {
+            alert('You have no Generators to sell!')
+        }
+    }
+
+    function updateBuyAutomaton(automaton) {
         automaton.cost = Math.floor(automaton.cost * 1.5);
+        document.getElementById(`cost-${automaton.id}`).textContent = automaton.cost;
+        document.getElementById(`owned-${automaton.id}`).textContent = automaton.owned;
+        document.getElementById(`pps-${automaton.id}`).textContent = `+${automaton.ppsd}`;
+    }
+
+    function updateSellAutomaton(automaton) {
+        automaton.cost = Math.floor(automaton.cost / 1.5);
         document.getElementById(`cost-${automaton.id}`).textContent = automaton.cost;
         document.getElementById(`owned-${automaton.id}`).textContent = automaton.owned;
         document.getElementById(`pps-${automaton.id}`).textContent = `+${automaton.ppsd}`;
@@ -48,21 +84,24 @@ const game = (() => {
 
     function checkAutomatonVisibility() {
         automatons.forEach(automaton => {
-            if(automaton.id != 'auto1') {
+            if (automaton.id != 'auto1') {
                 const threshold = Math.floor(automaton.cost * 0.75);
                 const row = document.getElementById(`${automaton.id}-row`);
-            
-                if (score >= threshold) {   
-                row.classList.remove('hidden'); 
+
+                if (score >= threshold) {
+                    row.classList.remove('hidden');
                 }
             }
         });
     }
 
     automatons.forEach(automaton => {
-        const button = document.getElementById(automaton.id);
-        button.addEventListener('click', () => buyAutomaton(automaton));
+        const buyButton = document.getElementById(`buy-${automaton.id}`);
+        buyButton.addEventListener('click', () => buyAutomaton(automaton));
+        const sellButton = document.getElementById(`sell-${automaton.id}`);
+        sellButton.addEventListener('click', () => sellAutomaton(automaton));
     })
+
 
     setInterval(() => {
         score += totalPointsPerSecond;

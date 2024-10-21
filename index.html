@@ -7,16 +7,36 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Chocolate Milk Clicker</h1>
 
+    <header>
+        Incremental Clicker Game by did6162<br>
+        <p>
+            Shop Settings: 
+            <button id="username-button" class="shop-name-button">Select username</button> |
+            <select id="colors">
+                <option value="#8b604e">Brown</option>
+                <option value="red">Red</option>
+                <option value="orange">Orange</option>
+                <option value="yellow">Yellow</option>
+                <option value="green">Green</option>
+                <option value="blue">Blue</option>
+                <option value="violet">Violet</option>
+                <option value="pink">Pink</option>
+                <option value="white">White</option>
+            </select>
+        </p>
+    </header>
+
+    <h1 class="colorable">Chocolate Milk Clicker</h1>
+    <h2 class="colorable" id="shop-name"></h2>
     <div id="score">Chocolate Milk: 0</div>
     <div id="score-per-sec">Chocolate Milk per Second: 0</div>
 
     <button id="click-btn"><img src="/img/choccy_milk.png" alt="chocolate milk" width="250"></button>
 
     <div id="generators">
-        <h2>Generators</h2>
-        <p>Buy generators to generate Chocolate Milk automatically:</p>
+        <h2 id="generator-label" class="colorable">Generators</h2>
+        <p id="buy-generators-to">Buy generators to generate Chocolate Milk automatically:</p>
     
         <table>
             <thead>
@@ -34,35 +54,40 @@
                     <td>Brown Cow</td>
                     <td><span id="cost-auto1">50</span></td>
                     <td><span id="pps-auto1">+0</span></td>
-                    <td><button id="auto1">Buy</button></td>
+                    <td><button id="buy-auto1">Buy</button>
+                    <button id="sell-auto1">Sell</button></td>
                 </tr>
                 <tr class="hidden" id="auto2-row">
                     <td><span id="owned-auto2">0</span></td>
                     <td>Farm</td>
                     <td><span id="cost-auto2">200</span></td>
                     <td><span id="pps-auto2">+0</span></td>
-                    <td><button id="auto2">Buy</button></td>
+                    <td><button id="buy-auto2">Buy</button>
+                    <button id="sell-auto2">Sell</button></td>
                 </tr>
                 <tr class="hidden" id="auto3-row">
                     <td><span id="owned-auto3">0</span></td>
                     <td>Factory</td>
                     <td><span id="cost-auto3">500</span></td>
                     <td><span id="pps-auto3">+0</span></td>
-                    <td><button id="auto3">Buy</button></td>
+                    <td><button id="buy-auto3">Buy</button>
+                    <button id="sell-auto3">Sell</button></td>
                 </tr>
                 <tr class="hidden" id="auto4-row">
                     <td><span id="owned-auto4">0</span></td>
                     <td>Mine</td>
                     <td><span id="cost-auto4">1000</span></td>
                     <td><span id="pps-auto4">+0</span></td>
-                    <td><button id="auto4">Buy</button></td>
+                    <td><button id="buy-auto4">Buy</button>
+                    <button id="sell-auto4">Sell</button></td>
                 </tr>
                 <tr class="hidden" id="auto5-row">
                     <td><span id="owned-auto5">0</span></td>
                     <td>Grandma Cow</td>
                     <td><span id="cost-auto5">5000</span></td>
                     <td><span id="pps-auto5">+0</span></td>
-                    <td><button id="auto5">Buy</button></td>
+                    <td><button id="buy-auto5">Buy</button>
+                    <button id="sell-auto5">Sell</button></td>
                 </tr>
             </tbody>
         </table>
